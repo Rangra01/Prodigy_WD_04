@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat — Real-Time Chat</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="chat-body">
+  <div class="app">
+    <!-- ================= Sidebar ================= -->
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar-header">
+        <div class="brand">
+          <span class="brand-mark brand-mark-sm">RC</span>
+          <span class="brand-name">Realtime Chat</span>
+        </div>
+        <div class="me">
+          <span class="me-avatar" id="meAvatar" aria-hidden="true">?</span>
+          <span class="me-name" id="meUsername">…</span>
+          <button type="button" class="btn btn-ghost btn-small" id="logoutBtn">Logout</button>
+        </div>
+      </header>
+
+      <div class="sidebar-scroll">
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Rooms</h2>
+            <button type="button" class="btn btn-secondary btn-small" id="createRoomBtn">+ New</button>
+          </div>
+
+          <form id="createRoomForm" class="create-room" hidden>
+            <input type="text" id="roomNameInput" maxlength="40" placeholder="Room name (2–40 characters)" />
+            <div class="create-actions">
+              <button type="submit" class="btn btn-primary btn-small" id="createRoomSubmit">Create</button>
+              <button type="button" class="btn btn-ghost btn-small" id="cancelRoomBtn">Cancel</button>
+            </div>
+            <p class="field-error" id="createRoomError" hidden></p>
+          </form>
+
+          <ul class="item-list" id="roomList">
+            <li class="list-empty">Loading rooms…</li>
+          </ul>
+        </section>
+
+        <section class="panel">
+          <div class="panel-head">
+            <h2>Users</h2>
+          </div>
+          <ul class="item-list" id="userList">
+            <li class="list-empty">Loading users…</li>
+          </ul>
+        </section>
+      </div>
+
+      <footer class="conn-footer">
+        <span class="dot dot-offline" id="connDot" aria-hidden="true"></span>
+        <span id="connText">Connecting…</span>
+      </footer>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay" hidden></div>
+
+    <!-- ================= Main conversation ================= -->
+    <main class="main">
+      <header class="main-header">
+        <button type="button" class="btn btn-ghost menu-btn" id="menuBtn" aria-label="Open sidebar">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
+            <rect x="1" y="3" width="16" height="2" rx="1"></rect>
+            <rect x="1" y="8" width="16" height="2" rx="1"></rect>
+            <rect x="1" y="13" width="16" height="2" rx="1"></rect>
+          </svg>
+        </button>
+        <div class="main-title">
+          <h1 id="activeTitle">Select a conversation</h1>
+          <p id="activeSubtitle">Pick a room or a user from the sidebar to start chatting.</p>
+        </div>
+        <span class="badge" id="activeBadge" hidden></span>
+      </header>
+
+      <div class="notice" id="noticeBar" role="status" hidden></div>
+
+      <div class="messages-wrap">
+        <ul class="messages" id="messages" aria-live="polite"></ul>
+        <div class="empty-state" id="emptyState">
+          <p id="emptyText">Pick a room from the sidebar to start chatting.</p>
+        </div>
+        <button type="button" class="jump-btn" id="jumpBtn" hidden>&darr; New messages</button>
+      </div>
+
+      <div class="error-bar" id="errorBar" role="alert" hidden></div>
+
+      <form class="composer" id="messageForm" autocomplete="off">
+        <textarea
+          id="messageInput"
+          rows="1"
+          maxlength="2000"
+          placeholder="Select a conversation to start typing"
+          disabled
+        ></textarea>
+        <button type="submit" class="btn btn-primary" id="sendBtn" disabled>Send</button>
+      </form>
+      <p class="composer-hint">Enter to send &middot; Shift+Enter for a new line</p>
+    </main>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="/js/chat.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create account — Real-Time Chat</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body class="auth-body">
+  <main class="auth-card">
+    <header class="auth-head">
+      <span class="brand-mark">RC</span>
+      <h1>Create account</h1>
+      <p>Join the chat in a few seconds.</p>
+    </header>
+
+    <div id="formError" class="banner banner-error" role="alert" hidden></div>
+
+    <form id="registerForm" novalidate>
+      <div class="field">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" autocomplete="username" placeholder="e.g. alex_dev" maxlength="20" required />
+        <small class="hint">3–20 characters: letters, numbers, underscores.</small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap">
+          <input type="password" id="password" name="password" autocomplete="new-password" placeholder="At least 8 characters" minlength="8" required />
+          <button type="button" class="toggle-pass" data-target="password">Show</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="confirmPassword">Confirm password</label>
+        <div class="input-wrap">
+          <input type="password" id="confirmPassword" name="confirmPassword" autocomplete="new-password" placeholder="Repeat your password" required />
+          <button type="button" class="toggle-pass" data-target="confirmPassword">Show</button>
+        </div>
+      </div>
+
+      <button type="submit" id="submitBtn" class="btn btn-primary btn-block">Create account</button>
+    </form>
+
+    <p class="auth-alt">Already have an account? <a href="/login.html">Log in</a></p>
+    <p class="auth-alt muted"><a href="/">&larr; Back to home</a></p>
+  </main>
+
+  <script src="/js/auth.js"></script>
+</body>
+</html>
